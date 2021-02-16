@@ -6,45 +6,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Javascript Code Quiz</title>
+    <!-- normalize.css -->
     <link rel="stylesheet" href="assets/css/normalize.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!-- ************ -->
+
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
 
     <header>
-        <div>
-            <a href="#">View Highscores</a>
+        <div id="info">
+            <a href="#" id="highscores">View Highscores</a>
         </div>
-        <div>
-            Time: <span id="time">0</span>
+        <div id="timer">
+            Time: <span id="time">0</span> sec
         </div>
     </header>
 
     <main>
-        <section>
-            <div>
-                <div>
-                    <h1>Javascript Coding Quiz Challenge</h1>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <p>
-                        Try and answer the following code-related questions within the time limit. Keep in mind that
-                        incorrect answers will penalize your your score time by 10 seconds!
-                    </p>
-                </div>
+        <section id="intro">
+            <h1>Javascript Coding Quiz Challenge</h1>
+            <p>
+                Try and answer the following code-related questions within the time limit. Keep in mind that
+                incorrect answers will penalize your your score time by 10 seconds!
+            </p>
+            <button id="btn-start">Start Quiz</button>
+        </section>
+        <section id="quiz" class="hide">
+            <h3 id="quizQuestion"></h3>
+            <button></button>
+            <button></button>
+            <button></button>
+            <button></button>
+            <div id="result" class="hidden">
+                <h4></h4>
             </div>
         </section>
-        <section>
-            <div>
-                <div>
-
-                </div>
-            </div>
-        </section>
-        <section>
+        <section id="complete" class="hide">
             <div>
                 <div>
 
