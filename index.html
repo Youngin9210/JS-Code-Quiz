@@ -22,7 +22,7 @@
 
     <header>
         <div id="info">
-            <a href="#" id="highscores">View Highscores</a>
+            <a href="#" id="showScores">View High Scores</a>
         </div>
         <div id="timer">
             Time: <span id="time">0</span> sec
@@ -49,11 +49,26 @@
             </div>
         </section>
         <section id="complete" class="hide">
-            <div>
-                <div>
-
-                </div>
+            <h1>All Done!</h1>
+            <p>Final Score: <span id="finalScore">0</span></p>
+            <div id="scoreRecord">
+                <p>Enter intitials: <input type="text" id="initials"></p>
+                <button id="btn-submit">Submit</button>
             </div>
+        </section>
+        <section id="highScores" class="hide">
+            <h1>High Scores</h1>
+            <div id="highScoreList">
+                <ol>
+                    <li data-highScore></li>
+                    <li data-highScore></li>
+                    <li data-highScore></li>
+                    <li data-highScore></li>
+                    <li data-highScore></li>
+                </ol>
+            </div>
+            <button id="btn-goBack">Go Back</button>
+            <button id="btn-clear">Clear High Scores</button>
         </section>
     </main>
 
