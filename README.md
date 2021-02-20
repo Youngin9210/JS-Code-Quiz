@@ -4,7 +4,7 @@ Week 4 Homework for OSU Bootcamp
 
 ## Description
 
-This webpage uses DOM munipulation to generate random passwords based on criteria selected by the user.  The criteria is selected using a series of prompts and confirms after the "Generate Password" button has been clicked.
+This webpage uses DOM munipulation and Web API's to create a JavaScript coding quiz and saving the results to localStorage.
 
 Check it out here https://youngin9210.github.io/JS-Code-Quiz/
 
