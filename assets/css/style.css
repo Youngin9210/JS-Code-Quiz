@@ -71,4 +71,5 @@ button:hover {
 
 #highScoreList {
     list-style: none;
+    padding: 0;
 }
