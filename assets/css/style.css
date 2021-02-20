@@ -61,3 +61,14 @@ button:hover {
 .hidden {
     visibility: hidden;
 }
+
+#scoreRecord {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#highScoreList {
+    list-style: none;
+}

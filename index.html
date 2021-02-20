@@ -49,23 +49,20 @@
             </div>
         </section>
         <section id="complete" class="hide">
-            <h1>All Done!</h1>
+            <h1 id="completeTitle">All Done!</h1>
             <p>Final Score: <span id="finalScore">0</span></p>
             <div id="scoreRecord">
                 <p>Enter intitials: <input type="text" id="initials"></p>
                 <button id="btn-submit">Submit</button>
             </div>
+            <p id="error" class="hidden">Initials cannot be blank.</p>
         </section>
         <section id="highScores" class="hide">
             <h1>High Scores</h1>
-            <div id="highScoreList">
-                <ol>
-                    <li id="highScore1"></li>
-                    <li id="highScore2"></li>
-                    <li id="highScore3"></li>
-                    <li id="highScore4"></li>
-                    <li id="highScore5"></li>
-                </ol>
+            <div>
+                <ul id="highScoreList">
+                    
+                </ul>
             </div>
             <button id="btn-goBack">Go Back</button>
             <button id="btn-clear">Clear High Scores</button>

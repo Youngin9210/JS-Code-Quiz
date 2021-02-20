@@ -1,9 +1,7 @@
 let intro = document.querySelector('#intro');
-let quiz = document.querySelector('#quiz');
-let result = document.querySelector('#result');
 let startQuiz = document.querySelector('#btn-start');
-let complete = document.querySelector('#complete');
-let finalScore = document.querySelector('#finalScore');
+let quiz = document.querySelector('#quiz');
+let quizQuestion = document.querySelector('#quizQuestion');
 let qChoices = [
     choice1 = document.querySelector('#choiceBtn1'),
     choice2 = document.querySelector('#choiceBtn2'),
@@ -11,10 +9,20 @@ let qChoices = [
     choice4 = document.querySelector('#choiceBtn4'),
 ];
 
-let quizQuestion = document.querySelector('#quizQuestion');
+let result = document.querySelector('#result');
+let submit = document.querySelector('#btn-submit');
+let complete = document.querySelector('#complete');
+let finalScore = document.querySelector('#finalScore');
+let initials = document.querySelector('#initials');
+let error = document.querySelector('#error');
+let highScores = document.querySelector('#highScores');
+let highScoreList = document.querySelector('#highScoreList');
+let goBack = document.querySelector('#btn-goBack');
+let clear = document.querySelector('#btn-clear');
+
 let currentQuestion = 0;
 const timerEl = document.querySelector('#time');
-let timerLeft = 75;
+let timerLeft;
 let score = 0;
 
 // questions to be shown during quiz
@@ -48,31 +56,33 @@ let questions = [
 
 function setTime() {
 // timer function
+    timerLeft = 75;
     timerEl.textContent = timerLeft;
     // Sets interval in variable
     var timerInterval = setInterval(function() {
-      timerLeft--;
-      timerEl.textContent = timerLeft;
-  
-      if(timerLeft === 0) {
+        timerLeft--;
+        timerEl.textContent = timerLeft;
+
+        if(timerLeft === 0 || currentQuestion === questions.length) {
         // Stops execution of action at set interval
+        showScore();
         clearInterval(timerInterval);
-      }
+        }
     }, 1000);
-  }
+}
 
 function checkAnswer(event) {
     if (event === questions[currentQuestion].answer) {
+        currentQuestion++;
         result.classList.remove('hidden');
         result.textContent = 'Correct';
         score += timerLeft;
-        currentQuestion++;
         setTimeout(function(){showQuestion()}, 500);
         setTimeout(function(){(result.classList.add('hidden'))}, 500);
     } else {
         result.classList.remove('hidden');
         result.textContent = 'Incorrect';
-        timerLeft -= 5;
+        timerLeft -= 10;
     }
 }
 
@@ -89,6 +99,7 @@ qChoices[3].addEventListener('click', function () {
     checkAnswer(this.textContent); 
 });
 
+
 function showQuestion() {
     if (timerLeft !== 0 && currentQuestion < questions.length) {
         quiz.classList.remove('hide');
@@ -100,26 +111,64 @@ function showQuestion() {
         }
     } else {
         showScore();
-        quiz.classList.add('hide');
-        console.log('oops');
     }
 }
 
 function showScore() {
+    quiz.classList.add('hide');
     complete.classList.remove('hide');
     finalScore.textContent = score;
+    if(timerLeft === 0) {
+        document.querySelector('#completeTitle').textContent = 'You ran out of time!';
+    }
 }
 
-function getLastScore() {
-    let lastScore = localStorage.getItem("lastScore");
-    let lastInitials = localStorage.getItem("lastInitials");
-  
-    if (!lastScore || !lastInitials) {
-      return;
+submit.addEventListener('click', function (event) {
+    event.preventDefault();
+
+    let lastInitials = initials.value;
+    let lastScore = score;
+    console.log(lastInitials);
+    console.log(lastScore);
+
+    if(initials){
+        localStorage.setItem(lastInitials, lastScore);
+        // localStorage.setItem('score', lastScore);
+        getLastScore();
+        showHighScores();
+    } else {
+        error.classList.remove('hidden')
     }
-  
-    
-  }
+
+
+});
+
+function getLastScore() {
+    for (let i = 0;i < localStorage.length; i++) {
+        let keyInitials = localStorage.key(i);
+        // let keyScore = localStorage.value(i);
+        let valueScore = localStorage.getItem(keyInitials);
+        // let lastScore = localStorage.getItem(keyScore);
+
+        let liEl = document.createElement('li');
+        liEl.textContent = `${keyInitials}: ${valueScore}`;
+
+        highScoreList.appendChild(liEl);
+        liEl.appendChild(spanEl);
+    }
+}
+
+goBack.addEventListener('click', function () {
+    highScores.classList.add('hide');
+});
+clear.addEventListener('click', function () {
+    // showHighScores();
+});
+
+function showHighScores() {
+    complete.classList.add('hide');
+    highScores.classList.remove('hide');
+}
 
 startQuiz.addEventListener('click', function () {
     intro.classList.add('hide');
