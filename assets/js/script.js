@@ -151,6 +151,8 @@ submit.addEventListener('click', function (event) {
     let lastScore = score;
     console.log(lastInitials);
     console.log(lastScore);
+    clearScoresUl();
+
 
     if(initials.value !== ''){
         localStorage.setItem(lastInitials, lastScore);
@@ -163,10 +165,9 @@ submit.addEventListener('click', function (event) {
 
 function getLastScore() {
     for (let i = 0; i < localStorage.length; i++) {
+        // clearScoresUl();
         let keyInitials = localStorage.key(i);
-        // let keyScore = localStorage.value(i);
         let valueScore = localStorage.getItem(keyInitials);
-        // let lastScore = localStorage.getItem(keyScore);
 
         liEl = document.createElement('li');
         liEl.textContent = `${keyInitials}: ${valueScore}`;
@@ -176,13 +177,20 @@ function getLastScore() {
     }
 }
 
+// ****** clearing highScore ul element ******
+let clearScoresUl = function () {
+    highScoreList.querySelectorAll('li').forEach(n => n.remove(liEl));
+}
+
+// ******* GO BACK *******
 goBack.addEventListener('click', function () {
     highScores.classList.add('hide');
     intro.classList.remove('hide');
 });
+// ******* CLEAR *******
 clear.addEventListener('click', function () {
     localStorage.clear();
-    highScoreList.querySelectorAll('*').forEach(n => n.remove(liEl));
+    clearScoresUl();
 });
 
 function showHighScores() {
