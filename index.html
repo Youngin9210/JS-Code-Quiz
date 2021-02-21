@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Javascript Code Quiz</title>
-    <!-- normalize.css -->
+    <!-- normalize.css from https://necolas.github.io/normalize.css/ -->
     <link rel="stylesheet" href="assets/css/normalize.css">
 
     <!-- Google Fonts -->
@@ -19,17 +19,20 @@
 </head>
 
 <body>
-
+    <!-- HEADER -->
     <header>
         <div id="info">
+            <!-- Link to show high scores in localStorage -->
             <a href="#" id="showScores">View High Scores</a>
         </div>
         <div id="timer">
+            <!-- Timer count down set in script.js -->
             Time: <span id="time">0</span> sec
         </div>
     </header>
 
     <main>
+        <!-- INTRO section with brief instructions -->
         <section id="intro">
             <h1>Javascript Coding Quiz Challenge</h1>
             <p>
@@ -38,33 +41,44 @@
             </p>
             <button id="btn-start">Start Quiz</button>
         </section>
+        <!-- QUIZ section set to hide unless told to be shown via js -->
         <section id="quiz" class="hide">
+            <!-- question -->
             <h3 id="quizQuestion"></h3>
+            <!-- multiple choice -->
             <button class="btn" id="choiceBtn1"></button>
             <button class="btn" id="choiceBtn2"></button>
             <button class="btn" id="choiceBtn3"></button>
             <button class="btn" id="choiceBtn4"></button>
-            <div id="result" class="">
+            <!-- correct/incorrect message -->
+            <div id="result">
                 <h4></h4>
             </div>
         </section>
+        <!-- QUIZ COMPLETE section to show score and input initials to be saved to localStorage -->
         <section id="complete" class="hide">
             <h1 id="completeTitle">All Done!</h1>
+            <!-- final score -->
             <p>Final Score: <span id="finalScore">0</span></p>
             <div id="scoreRecord">
+                <!-- input initials -->
                 <p>Enter intitials: <input type="text" id="initials"></p>
+                <!-- submit -->
                 <button id="btn-submit">Submit</button>
             </div>
+            <!-- error message to be shown if initials input is blank -->
             <p id="error" class="hidden">Initials cannot be blank.</p>
         </section>
+        <!-- HIGH SCORES section to display scores saved in localStorage -->
         <section id="highScores" class="hide">
             <h1>High Scores</h1>
             <div>
-                <ul id="highScoreList">
-                    
-                </ul>
+                <!-- ul element to be used to append li elements for scores as child elements -->
+                <ul id="highScoreList"></ul>
             </div>
+            <!-- Go back to intro -->
             <button id="btn-goBack">Go Back</button>
+            <!-- clear scores from localStorage -->
             <button id="btn-clear">Clear High Scores</button>
         </section>
     </main>

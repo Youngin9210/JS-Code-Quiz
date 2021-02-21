@@ -1,8 +1,10 @@
+/* styling font-family and view height for entire body */
 body {
     font-family: 'Roboto', sans-serif;
     height: 100vh;
 }
 
+/* hiding elements with this class added */
 .hide {
     display: none;
 }
@@ -21,6 +23,7 @@ header {
     color: gainsboro;
 }
 
+/* styling all sections */
 section {
     display: flex;
     flex-direction: column;
@@ -35,13 +38,15 @@ section {
     box-shadow: 8px 8px 8px 8px rgba(54, 17, 89, 0.5);
     background-color: gainsboro;
 }
- h3 {
-     text-align: center;
- }
 
-p {
-    font-weight: 600;
+section h1,
+section h3,
+section p {
     text-align: center;
+}
+
+section p {
+    font-weight: 600;
 }
 
 button {
@@ -53,6 +58,7 @@ button {
     margin: .5%;
 }
 
+/* setting hover style for buttons */
 button:hover {
     background-color: blueviolet;
     color: gainsboro;
@@ -61,6 +67,7 @@ button:hover {
     cursor: grab;
 }
 
+/* hiding elements with this class added */
 .hidden {
     visibility: hidden;
 }
@@ -77,17 +84,10 @@ button:hover {
     padding: 0;
 }
 
-section h1 {
-    display: flex;
-    text-align: center;
-}
-
+/* changing width of sections when screen size hits 768px */
 @media screen and (max-width: 768px)  {
     section {
         width: 80%;
     }
 }
   
-@media (max-width: 500px) {
-
-}
