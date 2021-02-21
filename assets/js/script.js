@@ -21,11 +21,12 @@ let highScoreList = document.querySelector('#highScoreList');
 let liEl;
 let goBack = document.querySelector('#btn-goBack');
 let clear = document.querySelector('#btn-clear');
+const timerEl = document.querySelector('#time');
 
 let currentQuestion;
-const timerEl = document.querySelector('#time');
 let timerLeft;
 let score;
+
 
 // questions to be shown during quiz
 let questions = [
@@ -56,20 +57,34 @@ let questions = [
       }
 ]
 
+function hide (w) {
+    w.classList.add('hide')
+}
+
+function show (x) {
+    x.classList.remove('hide')
+}
+
+function addHidden (y) {
+    y.classList.add('hidden');
+}
+
+function removeHidden (z) {
+    z.classList.remove('hidden');
+}
+
 getLastScore();
 
 showScores.addEventListener('click', function () {
-    intro.classList.add('hide');
+    hide(intro);
     showHighScores();
-    // getLastScore();
 });
 
 
 startQuiz.addEventListener('click', function () {
     currentQuestion = 0;
     score = 0;
-    intro.classList.add('hide');
-    complete.classList.add('hide');
+    hide(intro, complete);
     setTime();
     showQuestion();
 });
@@ -95,17 +110,18 @@ function setTime() {
 function checkAnswer(event) {
     if (event === questions[currentQuestion].answer) {
         currentQuestion++;
-        result.classList.remove('hidden');
+        removeHidden(result);
         result.textContent = 'Correct';
         score += timerLeft;
         setTimeout(function(){showQuestion()}, 500);
-        setTimeout(function(){(result.classList.add('hidden'))}, 500);
+        setTimeout(function(){(addHidden(result))}, 500);
     } else {
-        result.classList.remove('hidden');
+        removeHidden(result);
         result.textContent = 'Incorrect';
         timerLeft -= 10;
     }
 }
+
 
 qChoices[0].addEventListener('click', function () {
     checkAnswer(this.textContent); 
@@ -121,9 +137,11 @@ qChoices[3].addEventListener('click', function () {
 });
 
 
+
+
 function showQuestion() {
     if (timerLeft !== 0 && currentQuestion < questions.length) {
-        quiz.classList.remove('hide');
+        show(quiz);
         
         quizQuestion.textContent = questions[currentQuestion].title;
         // console.log(quizQuestion);
@@ -136,8 +154,8 @@ function showQuestion() {
 }
 
 function showScore() {
-    quiz.classList.add('hide');
-    complete.classList.remove('hide');
+    hide(quiz);
+    show(complete);
     finalScore.textContent = score;
     if(timerLeft === 0) {
         document.querySelector('#completeTitle').textContent = 'You ran out of time!';
@@ -149,8 +167,6 @@ submit.addEventListener('click', function (event) {
 
     let lastInitials = initials.value;
     let lastScore = score;
-    console.log(lastInitials);
-    console.log(lastScore);
     clearScoresUl();
 
 
@@ -159,7 +175,7 @@ submit.addEventListener('click', function (event) {
         getLastScore();
         showHighScores();
     } else {
-        error.classList.remove('hidden')
+        removeHidden(error);
     }
 });
 
@@ -184,9 +200,10 @@ let clearScoresUl = function () {
 
 // ******* GO BACK *******
 goBack.addEventListener('click', function () {
-    highScores.classList.add('hide');
-    intro.classList.remove('hide');
+    hide(highScores);
+    show(intro);
 });
+
 // ******* CLEAR *******
 clear.addEventListener('click', function () {
     localStorage.clear();
@@ -194,8 +211,8 @@ clear.addEventListener('click', function () {
 });
 
 function showHighScores() {
-    complete.classList.add('hide');
-    highScores.classList.remove('hide');
+    hide(complete);
+    show(highScores);
 }
 
 
